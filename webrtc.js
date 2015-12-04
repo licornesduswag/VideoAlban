@@ -1,8 +1,8 @@
 var localVideo;
-var remoteVideo[];
+var remoteVideo = new Array();
 var i = 0;
 var peerConnection;
-var peerConnectionConfig = {'iceServers': [{'url': 'stun:stun.services.mozilla.com'}, {'url': 'stun:stun.l.google.com:19302'}]};
+var peerConnectionConfig = {'iceServers': [{'url': 'stun:stun.l.google.com:19302'}]};
 
 navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
 window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
@@ -13,7 +13,7 @@ function pageReady() {
     localVideo = document.getElementById('localVideo');
     remoteVideo[i] = document.getElementById('remoteVideo'+i);
 
-    serverConnection = new WebSocket('ws://127.0.0.1:3434');
+    serverConnection = new WebSocket('ws://192.128.43.160:3434');
     serverConnection.onmessage = gotMessageFromServer;
 
     var constraints = {
